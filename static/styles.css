@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+.pet-photo {
+    display: block;
+    border-radius: 5px 5px;
+    width: 50%;
+    height: auto;
+}
+
+#pet-name {
+    color: blue;
+    text-decoration: none;
+}
+
+.pet-photo-details {
+    display: block;
+    border-radius: 5px 5px;
+    width: 30%;
+    height: auto;
+}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="display-pet container">
+    <h2 class="display-3 text-center mb-4">{{ pet.name }}</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8 d-flex flex-column">
+            <div class="pet-info">
+                <p class="lead">{{ pet.species }}</p>
+                <p class="lead">Age: {{ pet.age }} years</p>    
+            </div>
+            <div class="pet-photo">
+                {% if pet.photo_url %}
+                    <img src="{{ pet.photo_url }}" alt="Pet Photo" class="pet-photo-details">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="container">
+        <h2 class="display-3 text-center">Edit Pet</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <form action="/{{pet.id}}" method="POST">
+              {{ form.hidden_tag() }}
+              {% for field in form if field.widget.input_type != 'hidden' %}
+                <div class="form-group">
+                  {% if field.type == 'BooleanField' %}
+                    <div class="form-check">
+                      {{field(class_="form-check-input")}}
+                      {{field.label(class_="form-check-label")}}
+                    </div>
+                  {% else %}
+                    {{field.label}}
+                    {{field(class_="form-control")}}
+                  {% endif %}
+                  
+                  {% for err in field.errors %}
+                    <small class="form-text text-danger">
+                      {{err}}
+                    </small>
+                  {% endfor %}
+                </div>
+              {% endfor %}
+              
+              <button class="btn btn-success btn-lg">Submit</button>
+              <a href="/" class="btn btn-danger btn-lg">Go Back</a>
+            </form>  
+          </div>
+        </div>
+      </div>
+{% endblock %}
